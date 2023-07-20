@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário Bootstrap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<br>
+<br>
+
+<form action="/atualizadados" method="post">
+
+    <input type="hidden" name="id" value="<%= result._id %>">
+    <input type="text" id="autor" name="autor" value="<%= result.autor %>">
+    <input type="text" id="descricao" name="descricao" value="<%= result.descricao %>">
+    <input type="date" id="data" name="data" value="<%= result.data %>">
+    <input type="text" id="sentimento" name="sentimento" value="<%= result.sentimento %>">
+
+    <button type="submit">ATUALIZAR</button>
+
+</form>
+</body>
+</html>

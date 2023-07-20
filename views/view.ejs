@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dailyREIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <style>
+      main{
+
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+      }
+      .container{
+
+        position: relative;
+        top: 60px;
+        left: 2px;
+
+      }
+
+      .card-footer{
+
+        background-color: black;
+
+      }
+
+      #add{
+
+        border: 1px solid black;
+
+      }
+
+      .card{
+       
+       width: 450px;
+       transition: transform 0.3s ease; /* Duração e tipo de transição (suavidade) */
+
+      }
+
+      .card-group{
+
+       
+      }
+
+      .card:hover{
+
+        transform: scale(1.2);
+
+      }
+
+    </style>
+
+    <header>
+      <!-- As a link -->
+
+
+        <!-- As a heading -->
+        <nav class="navbar " style="background-color: black; color: white;">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1" style="background-color: black; color: white; font-family: cursive;">dailyREIS</span>
+          </div>
+        </nav>
+    </header>
+   
+    <main>
+
+      <div class="container">
+        <form action="/Criarpost" method="get">
+          <button type="submit" id="add" class="btn btn-success">Criar post <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-plus" viewBox="0 0 16 16">
+            <path d="M2.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1ZM4 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Zm2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
+            <path d="M0 4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v4a.5.5 0 0 1-1 0V7H1v5a1 1 0 0 0 1 1h5.5a.5.5 0 0 1 0 1H2a2 2 0 0 1-2-2V4Zm1 2h13V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2Z"/>
+            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+          </svg></button>
+        </form>
+      
+        <!-- Incluindo o jQuery (certifique-se de baixar o arquivo jquery.min.js e colocá-lo no mesmo diretório) -->
+        <script src="jquery.min.js"></script>
+
+      </div>
+
+      <br>
+      <h2 style="font-family: cursive;">Últimas postagens</h2>
+      <br>
+      <br>
+
+      <form action="delete" method="post">
+        <% for(let i = 0; i < result.length; i = i + 3) { %>
+      
+          <div class="card-group col-6 mx-auto mr-4">
+            <div class="card mb-4 mr-4">
+              <div class="card-body">
+                <h5 class="card-title"><%= result[i].autor %></h5>
+                <p class="card-text"><%= result[i].descricao %></p>
+                <p class="card-text"><%= result[i].sentimento %></p>
+                <b><p class="card-text"><%= result[i].data %></p></b>
+              </div>
+              <div class="card-footer">
+                <small class="text-body-secondary">
+                  <button type="submit" class="btn btn-danger" name="id" value = "<%= result[i]._id %>">Excluir</button>
+                  <button type="submit" class="btn btn-warning" formaction="update" formmethod="get" name="id" value="<%= result[i]._id %>">Editar</button>
+                </small>
+              </div>
+            </div>
+      
+            <% if (result[i+1]) { %>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title"><%= result[i+1].autor %></h5>
+                  <p class="card-text"><%= result[i+1].descricao %></p>
+                  <p class="card-text"><%= result[i+1].sentimento %></p>
+                  <b><p class="card-text"><%= result[i+1].data %></p></b>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">
+                    <button type="submit" class="btn btn-danger" name="id" value = "<%= result[i+1]._id %>">Excluir</button>
+                    <button type="submit" class="btn btn-warning" formaction="update" formmethod="get" name="id" value="<%= result[i+1]._id %>">Editar</button>
+                  </small>
+                </div>
+              </div>
+            <% } %>
+            <% if (result[i+2]) { %>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title"><%= result[i+2].autor %></h5>
+                  <p class="card-text"><%= result[i+2].descricao %></p>
+                  <p class="card-text"><%= result[i+2].sentimento %></p>
+                  <b><p class="card-text"><%= result[i+2].data %></p></b>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">
+                    <button type="submit" class="btn btn-danger" name="id" value = "<%= result[i+2]._id %>">Excluir</button>
+                    <button type="submit" class="btn btn-warning" formaction="update" formmethod="get" name="id" value="<%= result[i+2]._id %>">Editar</button>
+                  </small>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      </form>
+      
+      
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
